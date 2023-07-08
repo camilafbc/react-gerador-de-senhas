@@ -15,19 +15,34 @@ const gerarSimbolos =() => {
     return simbolos[Math.floor(Math.random() * simbolos.length)]
 }
 
-function gerarSenha(gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos){
+function gerarSenha(tamanho, ...teste){
     let senha = ""
 
-    const funcoes = [gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos]
+    const funcoes = [...teste]
 
-    for(let i = 1; i <= 12; i += 4){
+    for(let i = 1; i <= tamanho; i += funcoes.length){
         funcoes.forEach(() => {
             let caracter = funcoes[Math.floor(Math.random() * funcoes.length)]()
             senha += caracter
         })
     }
-    
+    console.log(tamanho)
     return senha
 }
+
+// function gerarSenha(tamanho, gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos){
+//     let senha = ""
+
+//     const funcoes = [gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos]
+
+//     for(let i = 1; i <= tamanho; i += funcoes.length){
+//         funcoes.forEach(() => {
+//             let caracter = funcoes[Math.floor(Math.random() * funcoes.length)]()
+//             senha += caracter
+//         })
+//     }
+    
+//     return senha
+// }
 
 export { gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos, gerarSenha }
