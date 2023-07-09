@@ -16,33 +16,30 @@ const gerarSimbolos =() => {
 }
 
 function gerarSenha(tamanho, ...teste){
-    let senha = ""
+    let password = ""
 
     const funcoes = [...teste]
 
-    for(let i = 1; i <= tamanho; i += funcoes.length){
-        funcoes.forEach(() => {
-            let caracter = funcoes[Math.floor(Math.random() * funcoes.length)]()
-            senha += caracter
-        })
+     while(password.length < tamanho){
+         funcoes.forEach((func) => {
+            let caracter = func()
+            password += caracter
+         })
     }
-    console.log(tamanho)
-    return senha
+    
+    // Algoritmo de Fisher-Yates para embaralhar elementos de um array
+
+    let randomPassword = password.split("")
+    
+    for (let i = randomPassword.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+        
+        [randomPassword[i], randomPassword[j]] = [randomPassword[j], randomPassword[i]];
+    }
+    
+    return randomPassword.slice(0, tamanho).join("");
 }
 
-// function gerarSenha(tamanho, gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos){
-//     let senha = ""
-
-//     const funcoes = [gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos]
-
-//     for(let i = 1; i <= tamanho; i += funcoes.length){
-//         funcoes.forEach(() => {
-//             let caracter = funcoes[Math.floor(Math.random() * funcoes.length)]()
-//             senha += caracter
-//         })
-//     }
-    
-//     return senha
-// }
 
 export { gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos, gerarSenha }

@@ -12,17 +12,19 @@ function App() {
   const [senha, setSenha] = useState("")
   const [copiarText, setCopiarText] = useState("Copiar")
   const [passwordSize, setPasswordSize] = useState(12)
+  const [capitalLetterIncludes, setCapitalLetterIncludes] = useState(false)
+  const [lowerCaseIncludes, setLowerCaseIncludes] = useState(false)
   const [numbersIncludes, setNumbersIncludes] = useState(false)
-  const [caracteresIncludes, setCaracteresIncludes] = useState(false)
+  const [simbolosIncludes, setSimbolosIncludes] = useState(false)
 
 
   function mudarSenha() {
     const novaSenha = gerarSenha(
       passwordSize, 
-      gerarLetrasMaiusculas, 
-      gerarLetrasMinusculas, 
+      capitalLetterIncludes ? gerarLetrasMaiusculas : () => "", 
+      lowerCaseIncludes ? gerarLetrasMinusculas : () => "", 
       numbersIncludes ? gerarNumeros : () => "", 
-      caracteresIncludes ? gerarSimbolos : () => ""
+      simbolosIncludes ? gerarSimbolos : () => ""
     );
     setSenha(novaSenha);
     setCopiarText("Copiar")
@@ -42,9 +44,25 @@ function App() {
         labelContent={"Quantidade de Caracteres: "}
         type={"number"}
         id={"tamanho"}
-        // min={1}
+        min={1}
         value={passwordSize}
         onChange={(ev) => setPasswordSize(Number(ev.target.value))}
+      />
+      <Input
+        htmlFor={"incluirLetraMaiuscula"}
+        labelContent={"Incluir Letra Maiúscula:"}
+        type={"checkbox"}
+        id={"incluirLetraMaiuscula"}
+        value={capitalLetterIncludes}
+        onChange={() => setCapitalLetterIncludes(currentState => !currentState)}
+      />
+      <Input
+        htmlFor={"incluirLetraMinuscula"}
+        labelContent={"Incluir Letra Minúscula:"}
+        type={"checkbox"}
+        id={"incluirLetraMinuscula"}
+        value={lowerCaseIncludes}
+        onChange={() => setLowerCaseIncludes(currentState => !currentState)}
       />
       <Input
         htmlFor={"incluirNumeros"}
@@ -55,12 +73,12 @@ function App() {
         onChange={() => setNumbersIncludes(currentState => !currentState)}
       />
       <Input
-        htmlFor={"incluirCaracteres"}
-        labelContent={"Incluir Caracteres:"}
+        htmlFor={"incluirSimbolos"}
+        labelContent={"Incluir Símbolos:"}
         type={"checkbox"}
-        id={"incluirCaracteres"}
-        value={caracteresIncludes}
-        onChange={() => setCaracteresIncludes(currentState => !currentState)}
+        id={"incluirSimbolos"}
+        value={simbolosIncludes}
+        onChange={() => setSimbolosIncludes(currentState => !currentState)}
       />
       <div className="btn_container">
         <Button evento={mudarSenha} buttonContent={"Gerar Senha"} />
