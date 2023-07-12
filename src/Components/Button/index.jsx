@@ -1,10 +1,10 @@
 import styles from './styles.module.css'
 
-function Button({buttonContent, evento}){
+function Button({buttonContent, onClick}){
     return (
         <button 
             className={styles.btn}
-            onClick={evento}
+            onClick={onClick}
         >
             {buttonContent}
         </button>
