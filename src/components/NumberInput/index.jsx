@@ -1,17 +1,17 @@
 import './style.css'
 
-function Input({htmlFor, labelContent, type, id, min, value, onChange}){
+function NumberInput({labelContent, id, value, onChange}){
     return (
         <div>
             <label 
-                htmlFor={htmlFor}
+                htmlFor={id}
             >
                 {labelContent}
             </label>
             <input 
-                type={type}
+                type="number"
                 id={id}
-                min={min}
+                min="1"
                 value={value}
                 onChange={onChange}
             />
@@ -19,4 +19,4 @@ function Input({htmlFor, labelContent, type, id, min, value, onChange}){
     )
 }
 
-export default Input
+export default NumberInput

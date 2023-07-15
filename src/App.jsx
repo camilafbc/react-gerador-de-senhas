@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import Button from './Components/Button'
-import Input from './Components/Input'
+import CheckboxInput from './components/CheckboxInput'
+import NumberInput from './components/NumberInput'
 import Saida from './Components/Saida'
 import Title from './Components/Title'
 
@@ -18,7 +19,7 @@ function App() {
   const [simbolosIncludes, setSimbolosIncludes] = useState(false)
 
 
-  function mudarSenha() {
+  function mudarSenha() { 
     const novaSenha = gerarSenha(
       passwordSize, 
       capitalLetterIncludes ? gerarLetrasMaiusculas : () => "", 
@@ -39,44 +40,33 @@ function App() {
   return (
     <>
       <Title titleContent="Gerador de Senhas"/>
-      <Input
-        htmlFor="tamanho"
-        labelContent="Quantidade de Caracteres: "
-        type="number"
+      <NumberInput
         id="tamanho"
-        min={1}
+        labelContent="Quantidade de Caracteres: "
         value={passwordSize}
         onChange={(ev) => setPasswordSize(Number(ev.target.value))}
       />
-      <Input
-        htmlFor="incluirLetraMaiuscula"
-        labelContent="Incluir Letra Maiúscula:"
-        type="checkbox"
-        id="incluirLetraMaiuscula"
+      <CheckboxInput 
+        id="letraMaiuscula"
+        labelContent="Letra Maiúscula:"
         value={capitalLetterIncludes}
         onChange={() => setCapitalLetterIncludes(currentState => !currentState)}
       />
-      <Input
-        htmlFor="incluirLetraMinuscula"
-        labelContent="Incluir Letra Minúscula:"
-        type="checkbox"
-        id="incluirLetraMinuscula"
+      <CheckboxInput 
+        id="letraMinuscula"
+        labelContent="Letra Minúscula:"
         value={lowerCaseIncludes}
         onChange={() => setLowerCaseIncludes(currentState => !currentState)}
       />
-      <Input
-        htmlFor="incluirNumeros"
-        labelContent="Incluir Números:"
-        type="checkbox"
+      <CheckboxInput 
         id="incluirNumeros"
+        labelContent="Números:"
         value={numbersIncludes}
         onChange={() => setNumbersIncludes(currentState => !currentState)}
       />
-      <Input
-        htmlFor="incluirSimbolos"
-        labelContent="Incluir Símbolos:"
-        type="checkbox"
+      <CheckboxInput 
         id="incluirSimbolos"
+        labelContent="Símbolos:"
         value={simbolosIncludes}
         onChange={() => setSimbolosIncludes(currentState => !currentState)}
       />
