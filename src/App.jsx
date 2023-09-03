@@ -13,19 +13,22 @@ function App() {
   const [senha, setSenha] = useState("")
   const [copiarText, setCopiarText] = useState("Copiar")
   const [passwordSize, setPasswordSize] = useState(10)
-  const [capitalLetterIncludes, setCapitalLetterIncludes] = useState(false)
-  const [lowerCaseIncludes, setLowerCaseIncludes] = useState(false)
-  const [numbersIncludes, setNumbersIncludes] = useState(false)
-  const [simbolosIncludes, setSimbolosIncludes] = useState(false)
 
-
+  // trabalhar com todos num objeto me economiza linhas de código e facilita a compreensão
+  const [check, setCheck] = useState({
+    capitalCheck: true,
+    lowerCheck: true,
+    numbersCheck: true,
+    simbolCheck: true
+  });
+ 
   function mudarSenha() { 
     const novaSenha = gerarSenha(
       passwordSize, 
-      capitalLetterIncludes ? gerarLetrasMaiusculas : () => "", 
-      lowerCaseIncludes ? gerarLetrasMinusculas : () => "", 
-      numbersIncludes ? gerarNumeros : () => "", 
-      simbolosIncludes ? gerarSimbolos : () => ""
+      check.capitalCheck ? gerarLetrasMaiusculas : () => "", 
+      check.lowerCheck ? gerarLetrasMinusculas : () => "", 
+      check.numbersCheck ? gerarNumeros : () => "", 
+      check.simbolCheck ? gerarSimbolos : () => ""
     );
     setSenha(novaSenha);
     setCopiarText("Copiar")
@@ -35,7 +38,6 @@ function App() {
     navigator.clipboard.writeText(senha)
     setCopiarText("Copiado!")
   }
-
   
   return (
     <>
@@ -49,26 +51,37 @@ function App() {
       <CheckboxInput 
         id="letraMaiuscula"
         labelContent="Letra Maiúscula:"
-        value={capitalLetterIncludes}
-        onChange={() => setCapitalLetterIncludes(currentState => !currentState)}
+        // não preciso trabalhar com o "value" pois ele está diretamente ligado com checked
+        checked={check.capitalCheck}
+        onChange={() => {
+          // trabalho com a mudança de todo o objeto a partir do estado anterior; facilita o entendimento, a manutenção e economiza linhas de código
+          // pego o estado anterior, copio todo o objeto e atualizo somente o estado desejado
+          setCheck(prevCheck => ({ ...prevCheck, capitalCheck: !prevCheck.capitalCheck }))
+        }}
       />
       <CheckboxInput 
         id="letraMinuscula"
         labelContent="Letra Minúscula:"
-        value={lowerCaseIncludes}
-        onChange={() => setLowerCaseIncludes(currentState => !currentState)}
+        checked={check.lowerCheck}
+        onChange={() => {
+          setCheck(prevCheck => ({ ...prevCheck, lowerCheck: !prevCheck.lowerCheck }))
+        }}
       />
       <CheckboxInput 
         id="incluirNumeros"
         labelContent="Números:"
-        value={numbersIncludes}
-        onChange={() => setNumbersIncludes(currentState => !currentState)}
+        checked={check.numbersCheck}
+        onChange={() => {
+          setCheck(prevCheck => ({ ...prevCheck, numbersCheck: !prevCheck.numbersCheck }))
+        }}
       />
       <CheckboxInput 
         id="incluirSimbolos"
         labelContent="Símbolos:"
-        value={simbolosIncludes}
-        onChange={() => setSimbolosIncludes(currentState => !currentState)}
+        checked={check.simbolCheck}
+        onChange={() => {
+          setCheck(prevCheck => ({ ...prevCheck, simbolCheck: !prevCheck.simbolCheck }))
+        }}
       />
       <div className="btn_container">
         <Button onClick={mudarSenha} buttonContent="Gerar Senha" />

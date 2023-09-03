@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import './style.css'
 
-function CheckboxInput({id, labelContent, value, onChange}){
+function CheckboxInput({id, labelContent, checked, onChange}){
     return (
         <div>
             <label 
@@ -11,8 +12,7 @@ function CheckboxInput({id, labelContent, value, onChange}){
             <input 
                 type="checkbox"
                 id={id}
-                min="1"
-                value={value}
+                checked={checked}
                 onChange={onChange}
             />
         </div>

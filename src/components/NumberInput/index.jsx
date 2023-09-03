@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './style.css'
 
 function NumberInput({labelContent, id, value, onChange}){
