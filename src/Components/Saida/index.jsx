@@ -1,9 +1,10 @@
-import styles from './styles.module.css'
+/* eslint-disable react/prop-types */
+// import styles from './styles.module.css'
 
 function Saida({saidaContent}){
     return (
-        <div className={styles.container}>
-            <p>{saidaContent}</p>
+        <div>
+            {saidaContent}
         </div>
     )
 }

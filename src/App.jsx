@@ -41,53 +41,57 @@ function App() {
   
   return (
     <>
-      <Title titleContent="Gerador de Senhas"/>
-      <NumberInput
-        id="tamanho"
-        labelContent="Quantidade de Caracteres: "
-        value={passwordSize}
-        onChange={(ev) => setPasswordSize(Number(ev.target.value))}
-      />
-      <CheckboxInput 
-        id="letraMaiuscula"
-        labelContent="Letra Maiúscula:"
-        // não preciso trabalhar com o "value" pois ele está diretamente ligado com checked
-        checked={check.capitalCheck}
-        onChange={() => {
-          // trabalho com a mudança de todo o objeto a partir do estado anterior; facilita o entendimento, a manutenção e economiza linhas de código
-          // pego o estado anterior, copio todo o objeto e atualizo somente o estado desejado
-          setCheck(prevCheck => ({ ...prevCheck, capitalCheck: !prevCheck.capitalCheck }))
-        }}
-      />
-      <CheckboxInput 
-        id="letraMinuscula"
-        labelContent="Letra Minúscula:"
-        checked={check.lowerCheck}
-        onChange={() => {
-          setCheck(prevCheck => ({ ...prevCheck, lowerCheck: !prevCheck.lowerCheck }))
-        }}
-      />
-      <CheckboxInput 
-        id="incluirNumeros"
-        labelContent="Números:"
-        checked={check.numbersCheck}
-        onChange={() => {
-          setCheck(prevCheck => ({ ...prevCheck, numbersCheck: !prevCheck.numbersCheck }))
-        }}
-      />
-      <CheckboxInput 
-        id="incluirSimbolos"
-        labelContent="Símbolos:"
-        checked={check.simbolCheck}
-        onChange={() => {
-          setCheck(prevCheck => ({ ...prevCheck, simbolCheck: !prevCheck.simbolCheck }))
-        }}
-      />
-      <div className="btn_container">
-        <Button onClick={mudarSenha} buttonContent="Gerar Senha" />
-        <Button onClick={copiarSenha} buttonContent={copiarText} />
+      <Title/>
+      <div className="content_container">
+        <div className="saida">
+          <Saida saidaContent={senha}/>
+          <Button onClick={copiarSenha} buttonContent={copiarText} />
+        </div>
+        <NumberInput
+          id="tamanho"
+          labelContent="Quantidade de Caracteres: "
+          value={passwordSize}
+          onChange={(ev) => setPasswordSize(Number(ev.target.value))}
+        />
+        <div className="checks_container">
+          <CheckboxInput 
+            id="letraMaiuscula"
+            labelContent="Letras Maiúsculas:"
+            // não preciso trabalhar com o "value" pois ele está diretamente ligado com checked
+            checked={check.capitalCheck}
+            onChange={() => {
+              // trabalho com a mudança de todo o objeto a partir do estado anterior; facilita o entendimento, a manutenção e economiza linhas de código
+              // pego o estado anterior, copio todo o objeto e atualizo somente o estado desejado
+              setCheck(prevCheck => ({ ...prevCheck, capitalCheck: !prevCheck.capitalCheck }))
+            }}
+          />
+          <CheckboxInput 
+            id="letraMinuscula"
+            labelContent="Letras Minúsculas:"
+            checked={check.lowerCheck}
+            onChange={() => {
+              setCheck(prevCheck => ({ ...prevCheck, lowerCheck: !prevCheck.lowerCheck }))
+            }}
+          />
+          <CheckboxInput 
+            id="incluirNumeros"
+            labelContent="Números:"
+            checked={check.numbersCheck}
+            onChange={() => {
+              setCheck(prevCheck => ({ ...prevCheck, numbersCheck: !prevCheck.numbersCheck }))
+            }}
+          />
+          <CheckboxInput 
+            id="incluirSimbolos"
+            labelContent="Símbolos:"
+            checked={check.simbolCheck}
+            onChange={() => {
+              setCheck(prevCheck => ({ ...prevCheck, simbolCheck: !prevCheck.simbolCheck }))
+            }}
+          />
+        </div>
+        <Button style={{margin: "0 auto"}} onClick={mudarSenha} buttonContent="Gerar Senha"  />
       </div>
-      <Saida saidaContent={senha}/>
     </>
   )
 }
