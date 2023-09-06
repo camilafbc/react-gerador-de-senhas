@@ -1,0 +1,83 @@
+:root {
+    --white-color: #f5f5f5;
+    --main-blue-color: #002233;
+    --card-bckg-color: #5f9ea0;
+    --btn-hover-color: #646cff;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 2.5rem;
+  margin: 0 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--card-bckg-color);
+  color: var(--white-color);
+}
+
+.checks_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.display {
+  display: flex;
+  gap: 1rem;
+  height: 3rem;
+}
+
+.display > div {
+  width: 100%;
+  font-size: 1.250rem;
+  border: none;
+  background-color: var(--white-color);
+  height: 100%;
+  color: var(--main-blue-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.checks_container > div {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+input[type="checkbox"] {
+  width: 1.025rem;
+  height: 1.025rem;
+  accent-color: var(--main-blue-color);
+  cursor: pointer;
+}
+
+button {
+  width: 130px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--main-blue-color);
+  color: var(--white-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--btn-hover-color);
+}
+
+.btn_center {
+  margin: 0 auto;
+}
