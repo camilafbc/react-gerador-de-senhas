@@ -28,6 +28,7 @@ function generatePassword(password_length, ...functions){
     }
     
     // Algoritmo de Fisher-Yates para embaralhar elementos de um array
+    // Para garantir que os elementos não venham sempre numa mesma ordem
 
     let randomPassword = password.split("")
     
