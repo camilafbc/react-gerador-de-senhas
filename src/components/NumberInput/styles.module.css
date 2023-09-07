@@ -1,15 +1,9 @@
-/* div{
-    margin-bottom: 1rem;
-} */
-
 input[type=number] {
     width: 50px;
     border-radius: 8px;
     border: none;
     font-size: 1.25rem;
     font-weight: 500;
-    /* font-family: inherit; */
-    /* background-color: #f5f5f5; */
     background-color: transparent;
     color: #002233;
     outline: none;
@@ -18,9 +12,5 @@ input[type=number] {
 input[type=number]::-webkit-inner-spin-button { 
     width: 15px;
     height: auto;
-    /* margin: 0.25rem;
-    padding: 5px; */
-    /* transform: rotate(90deg);
-    filter: sepia(100%) hue-rotate(90deg); */
     cursor: pointer;
 }

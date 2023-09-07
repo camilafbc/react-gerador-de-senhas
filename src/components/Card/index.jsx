@@ -3,12 +3,12 @@ import CheckboxInput from '../CheckboxInput'
 import NumberInput from '../NumberInput'
 import styles from './styles.module.css'
 
-import {gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos, gerarSenha} from '../../functions/functions.js'
+import {generateCapitalLetters, generateLowercaseLetters, generateNumbers, generateSymbols, generatePassword} from '../../functions/functions.js'
 
 function Card(){
 
-const [senha, setSenha] = useState("")
-  const [copiarText, setCopiarText] = useState("Copiar")
+  const [password, setPassword] = useState("")
+  const [copyText, setCopyText] = useState("Copiar")
   const [passwordSize, setPasswordSize] = useState(10)
 
   // trabalhar com todos num objeto me economiza linhas de código e facilita a compreensão
@@ -19,28 +19,29 @@ const [senha, setSenha] = useState("")
     simbolCheck: true
   });
  
-  function mudarSenha() { 
-    const novaSenha = gerarSenha(
+  // 
+  function changePassword() { 
+    const newPassword = generatePassword(
       passwordSize, 
-      check.capitalCheck ? gerarLetrasMaiusculas : () => "", 
-      check.lowerCheck ? gerarLetrasMinusculas : () => "", 
-      check.numbersCheck ? gerarNumeros : () => "", 
-      check.simbolCheck ? gerarSimbolos : () => ""
+      check.capitalCheck ? generateCapitalLetters : () => "", 
+      check.lowerCheck ? generateLowercaseLetters : () => "", 
+      check.numbersCheck ? generateNumbers : () => "", 
+      check.simbolCheck ? generateSymbols : () => ""
     );
-    setSenha(novaSenha);
-    setCopiarText("Copiar")
+    setPassword(newPassword);
+    setCopyText("Copiar")
   }
   
-  function copiarSenha() {
-    navigator.clipboard.writeText(senha)
-    setCopiarText("Copiado!")
+  function copyPassword() {
+    navigator.clipboard.writeText(password)
+    setCopyText("Copiado!")
   }
 
     return (
         <div className={styles.card}>
             <div className={styles.display}>
-                <div>{senha}</div>
-                <button onClick={copiarSenha}>{copiarText}</button>
+                <div>{password}</div>
+                <button onClick={copyPassword}>{copyText}</button>
             </div>
             <NumberInput
                 id="tamanho"
@@ -85,7 +86,7 @@ const [senha, setSenha] = useState("")
                     }}
                 />
             </div>
-            <button className={styles.btn_center} onClick={mudarSenha}>Gerar Senha</button>
+            <button className={styles.btn_center} onClick={changePassword}>Gerar Senha</button>
         </div>
     )
 }

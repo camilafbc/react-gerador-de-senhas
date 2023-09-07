@@ -1,29 +1,29 @@
-const gerarLetrasMaiusculas = () => {
+const generateCapitalLetters = () => {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65)
 }
 
-const gerarLetrasMinusculas = () => {
+const generateLowercaseLetters = () => {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
 }
 
-const gerarNumeros = () => {
+const generateNumbers = () => {
     return Math.floor(Math.random() * 9)
 }
 
-const gerarSimbolos =() => {
-    const simbolos = "!@#$%&*()+*/.;:?][}{"
-    return simbolos[Math.floor(Math.random() * simbolos.length)]
+const generateSymbols =() => {
+    const symbols = "!@#$%&*()+*/.;:?][}{"
+    return symbols[Math.floor(Math.random() * symbols.length)]
 }
 
-function gerarSenha(tamanho, ...teste){
+function generatePassword(password_length, ...functions){
     let password = ""
 
-    const funcoes = [...teste]
+    const generating_functions = [...functions]
 
-     while(password.length < tamanho){
-         funcoes.forEach((func) => {
-            let caracter = func()
-            password += caracter
+     while(password.length < password_length){
+         generating_functions.forEach((func) => {
+            let character = func()
+            password += character
          })
     }
     
@@ -38,8 +38,8 @@ function gerarSenha(tamanho, ...teste){
         [randomPassword[i], randomPassword[j]] = [randomPassword[j], randomPassword[i]];
     }
     
-    return randomPassword.slice(0, tamanho).join("");
+    return randomPassword.slice(0, password_length).join("");
 }
 
 
-export { gerarLetrasMaiusculas, gerarLetrasMinusculas, gerarNumeros, gerarSimbolos, gerarSenha }
+export { generateCapitalLetters, generateLowercaseLetters, generateNumbers, generateSymbols, generatePassword }
