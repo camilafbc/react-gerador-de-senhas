@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 1.75rem;
   padding: 2.5rem;
-  margin: 0 1rem;
+  margin: 2rem 1rem;
   border-radius: 0.5rem;
   background-color: var(--card-bckg-color);
   color: var(--white-color);
