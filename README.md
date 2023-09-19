@@ -1,7 +1,7 @@
 # 🔐 Gerador de Senhas
 
 <div align="center">
-  <img width="100%" src="" />
+  <img width="80%" src="https://github.com/camilafbc/react-gerador-de-senhas/blob/main/rec-to-readme.gif?raw=true" />
 </div>
 
 Este é um projeto de Gerador de Senhas desenvolvido em React JS. A aplicação permite que o usuário defina a quantidade de caracteres da senha a ser gerada e escolha quais tipos de caracteres a senha deve conter. A senha gerada pode ser copiada para a área de transferência com um único clique.
